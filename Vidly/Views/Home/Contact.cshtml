@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+
+<address>
+    @ViewBag.FirstName @ViewBag.LastName
+    @ViewBag.AddressLine1<br />
+    @ViewBag.AddressLine2<br />
+    @ViewBag.Country @ViewBag.ZipCode
+    @*<abbr title="Phone">P:</abbr>
+        425.555.0100*@
+</address>
+
+<address>
+    <strong>Email:</strong>   <a href="mailto:@ViewBag.Email">@ViewBag.Email</a><br />
+</address>
