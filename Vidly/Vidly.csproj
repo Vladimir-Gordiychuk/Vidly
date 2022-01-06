@@ -267,6 +267,10 @@
     <Compile Include="Migrations\202201041410550_AddedDrivingLicenseToApplcationUser.Designer.cs">
       <DependentUpon>202201041410550_AddedDrivingLicenseToApplcationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201061822195_AddedPhoneToApplicationUser.cs" />
+    <Compile Include="Migrations\202201061822195_AddedPhoneToApplicationUser.Designer.cs">
+      <DependentUpon>202201061822195_AddedPhoneToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -612,6 +616,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201041410550_AddedDrivingLicenseToApplcationUser.resx">
       <DependentUpon>202201041410550_AddedDrivingLicenseToApplcationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201061822195_AddedPhoneToApplicationUser.resx">
+      <DependentUpon>202201061822195_AddedPhoneToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
