@@ -294,6 +294,10 @@
     <Compile Include="Migrations\202201081448117_AddedRentalModel.Designer.cs">
       <DependentUpon>202201081448117_AddedRentalModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201081501491_UpdatedRentalPropertes.cs" />
+    <Compile Include="Migrations\202201081501491_UpdatedRentalPropertes.Designer.cs">
+      <DependentUpon>202201081501491_UpdatedRentalPropertes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
@@ -646,6 +650,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201081448117_AddedRentalModel.resx">
       <DependentUpon>202201081448117_AddedRentalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201081501491_UpdatedRentalPropertes.resx">
+      <DependentUpon>202201081501491_UpdatedRentalPropertes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
