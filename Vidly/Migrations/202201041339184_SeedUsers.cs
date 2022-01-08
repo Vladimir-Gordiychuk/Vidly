@@ -20,6 +20,15 @@ namespace Vidly.Migrations
         
         public override void Down()
         {
+            Sql(@"
+                DELETE FROM [dbo].[AspNetUserRoles] WHERE [UserId] = '41828e75-b10e-413b-8f7c-6cdea2e7d006';
+
+                DELETE FROM [dbo].[AspNetRoles] WHERE [Name] = 'CanManageMovies';
+
+                DELETE FROM [dbo].[AspNetUsers] WHERE Email = 'admin@vidly.com';
+                DELETE FROM [dbo].[AspNetUsers] WHERE Email = 'guest@vidly.com';
+                ");
+
         }
     }
 }
