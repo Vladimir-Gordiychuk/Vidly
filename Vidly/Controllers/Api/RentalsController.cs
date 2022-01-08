@@ -33,9 +33,8 @@ namespace Vidly.Controllers.Api
         [HttpPost]
         public IHttpActionResult NewRental([FromBody]RentalDto rentalDto)
         {
-            var customer = _context
-                .Customers
-                .Single(c => c.Id == rentalDto.CustomerId);
+            if (rentalDto.MovieIds.Count == 0)
+                return BadRequest("No movies Ids have been given.");
 
             var map = rentalDto.MovieIds.ToDictionary(
                 movieId => movieId,
@@ -46,10 +45,22 @@ namespace Vidly.Controllers.Api
                 return BadRequest("Only one copy of a movie is allowed to rent at once.");
             }
 
+            var customer = _context
+                .Customers
+                .SingleOrDefault(c => c.Id == rentalDto.CustomerId);
+
+            if (customer == null)
+                return BadRequest("CustomerId is not valid.");
+
             var movies = _context
                 .Movies
                 .Where(movie => rentalDto.MovieIds.Contains(movie.Id))
                 .ToList();
+
+            if (movies.Count != map.Keys.Count)
+            {
+                return BadRequest("One or movie ids are invalid.");
+            }
 
             if (movies.Any(movie => movie.NumberAvailable < map[movie.Id]))
             {
