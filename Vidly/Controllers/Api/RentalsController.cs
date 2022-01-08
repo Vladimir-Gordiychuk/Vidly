@@ -4,27 +4,60 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Vidly.Dtos;
+using Vidly.Models;
 
 namespace Vidly.Controllers.Api
 {
     public class RentalsController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        ApplicationDbContext _context;
+
+        public RentalsController()
         {
-            return new string[] { "value1", "value2" };
+            _context = new ApplicationDbContext();
         }
 
+        // GET api/<controller>
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
         // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //public string Get(int id)
+        //{
+        //}
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IHttpActionResult NewRental([FromBody]RentalDto rentalDto)
         {
+            var customer = _context
+                .Customers
+                .Single(c => c.Id == rentalDto.CustomerId);
+
+            var movies = _context
+                .Movies
+                .Where(movie => rentalDto.MovieIds.Contains(movie.Id))
+                .ToList();
+
+            var now = DateTime.Now;
+
+            var rentals = movies.Select(
+                movie => new Rental()
+                {
+                    DateRented = now,
+                    DateReturned = null,
+                    Customer = customer,
+                    Movie = movie
+                });
+
+            _context.Rentals.AddRange(rentals);
+
+            _context.SaveChanges();
+
+            return Ok();
         }
 
 
