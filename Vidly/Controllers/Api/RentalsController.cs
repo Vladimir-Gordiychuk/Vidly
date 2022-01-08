@@ -37,10 +37,24 @@ namespace Vidly.Controllers.Api
                 .Customers
                 .Single(c => c.Id == rentalDto.CustomerId);
 
+            var map = rentalDto.MovieIds.ToDictionary(
+                movieId => movieId,
+                movieId => rentalDto.MovieIds.Count(id => id == movieId));
+
+            if (map.Values.Any(value => value > 1))
+            {
+                return BadRequest("Only one copy of a movie is allowed to rent at once.");
+            }
+
             var movies = _context
                 .Movies
                 .Where(movie => rentalDto.MovieIds.Contains(movie.Id))
                 .ToList();
+
+            if (movies.Any(movie => movie.NumberAvailable < map[movie.Id]))
+            {
+                return BadRequest("Not enough items available.");
+            }
 
             var now = DateTime.Now;
 
@@ -52,6 +66,11 @@ namespace Vidly.Controllers.Api
                     Customer = customer,
                     Movie = movie
                 });
+
+            foreach (var movie in movies)
+            {
+                movie.NumberAvailable -= map[movie.Id];
+            }
 
             _context.Rentals.AddRange(rentals);
 
