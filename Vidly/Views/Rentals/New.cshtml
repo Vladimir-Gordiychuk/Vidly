@@ -103,7 +103,7 @@
                 return vm.movieIds.length > 0;
             }, "Please select at least one movie.");
 
-            $("#newRental").validate({
+            const validator = $("#newRental").validate({
                 submitHandler: function () {
 
                     $.ajax({
@@ -121,7 +121,6 @@
                             vm = { movieIds: [] };
 
                             validator.resetForm();
-
                         })
                         .fail(function () {
                             toastr.error("Failed to record new rentals.");
