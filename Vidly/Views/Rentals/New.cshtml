@@ -9,14 +9,24 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" value="" class="form-control typeahead" />
+            <input id="customer"
+                   name="customer"
+                   data-rule-validCustomer="true"
+                   required type="text"
+                   value=""
+                   class="form-control typeahead" />
         </div>
     </div>
 
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" value="" class="form-control" />
+            <input id="movie"
+                   name="movie"
+                   data-rule-validMovieList="true"
+                   type="text"
+                   value=""
+                   class="form-control typeahead" />
         </div>
     </div>
 
@@ -32,6 +42,8 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         $(document).ready(function () {
 
@@ -83,20 +95,41 @@
                 vm.movieIds.push(movie.id);
             });
 
-            $('#newRental').submit(function (e) {
-                e.preventDefault();
+            $.validator.addMethod("validCustomer", function () {
+                return vm.customerId && vm.customerId !== 0;
+            }, "Please select a valid customer.");
 
-                $.ajax({
-                    url: "/api/rentals",
-                    method: "POST",
-                    data: vm
-                })
-                    .done(function () {
-                        toastr.success("Rentals successfully recorded.");
+            $.validator.addMethod("validMovieList", function () {
+                return vm.movieIds.length > 0;
+            }, "Please select at least one movie.");
+
+            $("#newRental").validate({
+                submitHandler: function () {
+
+                    $.ajax({
+                        url: "/api/rentals",
+                        method: "POST",
+                        data: vm
                     })
-                    .fail(function () {
-                        toastr.error("Failed to record new rentals.");
-                    });
+                        .done(function () {
+                            toastr.success("Rentals successfully recorded.");
+
+                            $("#customer").typeahead("val", "");
+                            $("#movie").typeahead("val", "");
+                            $("#movies").empty();
+
+                            vm = { movieIds: [] };
+
+                            validator.resetForm();
+
+                        })
+                        .fail(function () {
+                            toastr.error("Failed to record new rentals.");
+                        });
+
+                    // prevent ordinaty form submitting.
+                    return false;
+                }
             });
 
         });
