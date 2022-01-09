@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
@@ -290,17 +291,17 @@
     <Compile Include="Migrations\202201061822195_AddedPhoneToApplicationUser.Designer.cs">
       <DependentUpon>202201061822195_AddedPhoneToApplicationUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201081448117_AddedRentalModel.cs" />
-    <Compile Include="Migrations\202201081448117_AddedRentalModel.Designer.cs">
-      <DependentUpon>202201081448117_AddedRentalModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201081501491_UpdatedRentalPropertes.cs" />
-    <Compile Include="Migrations\202201081501491_UpdatedRentalPropertes.Designer.cs">
-      <DependentUpon>202201081501491_UpdatedRentalPropertes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202201081541287_AddedNumberAvailableToMovieModel.cs" />
     <Compile Include="Migrations\202201081541287_AddedNumberAvailableToMovieModel.Designer.cs">
       <DependentUpon>202201081541287_AddedNumberAvailableToMovieModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201081755270_AddedRentalToModel.cs" />
+    <Compile Include="Migrations\202201081755270_AddedRentalToModel.Designer.cs">
+      <DependentUpon>202201081755270_AddedRentalToModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201081910352_SyncModel.cs" />
+    <Compile Include="Migrations\202201081910352_SyncModel.Designer.cs">
+      <DependentUpon>202201081910352_SyncModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Rental.cs" />
@@ -448,16 +449,23 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\somee.com.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -535,6 +543,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -580,6 +594,7 @@
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
     <Content Include="Views\Home\PrivacyPolicy.cshtml" />
     <Content Include="Views\Home\TermsOfService.cshtml" />
+    <Content Include="Views\Rentals\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -652,14 +667,14 @@
     <EmbeddedResource Include="Migrations\202201061822195_AddedPhoneToApplicationUser.resx">
       <DependentUpon>202201061822195_AddedPhoneToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201081448117_AddedRentalModel.resx">
-      <DependentUpon>202201081448117_AddedRentalModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201081501491_UpdatedRentalPropertes.resx">
-      <DependentUpon>202201081501491_UpdatedRentalPropertes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201081541287_AddedNumberAvailableToMovieModel.resx">
       <DependentUpon>202201081541287_AddedNumberAvailableToMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201081755270_AddedRentalToModel.resx">
+      <DependentUpon>202201081755270_AddedRentalToModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201081910352_SyncModel.resx">
+      <DependentUpon>202201081910352_SyncModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
